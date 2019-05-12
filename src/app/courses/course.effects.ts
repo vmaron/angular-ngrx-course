@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {AllCoursesLoaded, AllCoursesRequested, CourseActionTypes, CourseLoaded, CourseRequested} from './course.actions';
 import {throwError} from 'rxjs';
-import {catchError, concatMap, exhaustMap, filter, map, mergeMap, withLatestFrom} from "rxjs/operators";
+import {catchError, concatMap, exhaustMap, filter, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {CoursesService} from './services/courses.service';
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
@@ -21,14 +21,14 @@ export class CourseEffects {
         console.log('error loading course ', err);
         return throwError(err);
       })
-
-  );
+    );
 
   @Effect()
   loadAllCourses$ = this.actions$
     .pipe(
       ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
       withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
+      // tslint:disable-next-line:no-shadowed-variable
       filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
       mergeMap(() => this.coursesService.findAllCourses()),
       map(courses => new AllCoursesLoaded({courses})),
@@ -39,9 +39,6 @@ export class CourseEffects {
     );
 
 
-  constructor(private actions$ :Actions, private coursesService: CoursesService,
-              private store: Store<AppState>) {
-
-  }
+  constructor(private actions$: Actions, private coursesService: CoursesService, private store: Store<AppState>) {}
 
 }

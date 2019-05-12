@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs";
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import {AppState} from './reducers';
 import {Logout} from './auth/auth.actions';
-import {map} from 'rxjs/operators';
 import {isLoggedIn, isLoggedOut} from './auth/auth.selectors';
 import {Router} from '@angular/router';
 

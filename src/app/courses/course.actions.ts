@@ -17,22 +17,21 @@ export enum CourseActionTypes {
 
 export interface PageQuery {
   pageIndex: number;
-  pageSize:number;
+  pageSize: number;
 }
 
 export class LessonsPageRequested implements Action {
-
   readonly type = CourseActionTypes.LessonsPageRequested;
 
-  constructor(public payload: {courseId:number, page:PageQuery}) {}
-
+  constructor(public payload: { courseId: number, page: PageQuery }) {
+  }
 }
 
 export class LessonsPageLoaded implements Action {
-
   readonly type = CourseActionTypes.LessonsPageLoaded;
 
-  constructor(public payload:{lessons: Lesson[]}) {}
+  constructor(public payload: { lessons: Lesson[] }) {
+  }
 
 }
 
@@ -44,17 +43,14 @@ export class LessonsPageCancelled implements Action {
 
 
 export class CourseRequested implements Action {
-
   readonly type = CourseActionTypes.CourseRequested;
 
   constructor(public payload: { courseId: number }) {
-
   }
 }
 
 
 export class CourseLoaded implements Action {
-
   readonly type = CourseActionTypes.CourseLoaded;
 
   constructor(public payload: { course: Course }) {
@@ -69,23 +65,18 @@ export class AllCoursesRequested implements Action {
 }
 
 export class AllCoursesLoaded implements Action {
-
   readonly type = CourseActionTypes.AllCoursesLoaded;
 
   constructor(public payload: { courses: Course[] }) {
-
   }
-
 }
 
 export class CourseSaved implements Action {
-
   readonly type = CourseActionTypes.CourseSaved;
 
-  constructor(public payload: { course: Update<Course> }) {}
+  constructor(public payload: { course: Update<Course> }) {
+  }
 }
-
-
 
 
 export type CourseActions =
